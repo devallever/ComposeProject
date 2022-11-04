@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="app.allever.android.learning.project.compose.module.wechat.ui.WechatComposeActivity" />
     </application>
 
 </manifest>
