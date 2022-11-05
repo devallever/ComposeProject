@@ -97,7 +97,7 @@ fun HomeVoiceRoomPage(lifecycleOwner: LifecycleOwner) {
             }) { page ->
 
             when (page) {
-                0 -> Text(data[page])
+                0 -> VoiceRoomRecommendListPage(lifecycleOwner)
                 1 -> Text(data[page])
             }
         }
