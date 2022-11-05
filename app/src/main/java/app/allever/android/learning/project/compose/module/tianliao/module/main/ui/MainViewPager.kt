@@ -1,21 +1,23 @@
-package app.allever.android.learning.project.compose.module.wechat.ui.main
+package app.allever.android.learning.project.compose.module.tianliao.module.main.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import app.allever.android.learning.project.compose.module.wechat.data.Chat
-import app.allever.android.learning.project.compose.module.wechat.ui.message.ChatList
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WeViewPager(list: List<Chat>, pagerState: PagerState, modifier: Modifier, onPageChanged:(Int) -> Unit): Modifier {
+fun MainViewPager(
+    pagerState: PagerState,
+    modifier: Modifier,
+    onPageChanged: (Int) -> Unit
+): Modifier {
     //页面切换监听
     LaunchedEffect(pagerState) {
         // Collect from the pager state a snapshotFlow reading the currentPage
@@ -24,21 +26,30 @@ fun WeViewPager(list: List<Chat>, pagerState: PagerState, modifier: Modifier, on
         }
     }
 
-    //https://google.github.io/accompanist/pager/
-    HorizontalPager(4, state = pagerState, modifier = modifier) { page ->
+    HorizontalPager(count = 4, modifier, pagerState) { page ->
         when (page) {
-            0 -> ChatList(list)
+            0 -> {
+                Box(Modifier.fillMaxSize()) {
+                    Text("聊群")
+                }
+            }
             1 -> {
-                Box(modifier.fillMaxSize())
+                Box(Modifier.fillMaxSize()) {
+                    Text("聊圈")
+                }
             }
             2 -> {
-                Box(modifier.fillMaxSize())
+                Box(Modifier.fillMaxSize()) {
+                    Text("聊信")
+                }
             }
             3 -> {
-                Box(modifier.fillMaxSize())
+                Box(Modifier.fillMaxSize()) {
+                    Text("我的")
+                }
             }
         }
     }
+
     return modifier
 }
-

@@ -19,8 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.allever.android.learning.project.compose.data.FunctionItem
+import app.allever.android.learning.project.compose.module.tianliao.module.main.TLMainActivity
 import app.allever.android.learning.project.compose.module.wechat.ui.WechatComposeActivity
 import app.allever.android.learning.project.compose.ui.theme.ComposeProjectTheme
+import app.allever.android.lib.core.base.AbstractActivity
+import app.allever.android.lib.core.helper.ActivityHelper
 
 class MainActivity : ComponentActivity() {
     val viewMode: MainViewModel by viewModels()
@@ -30,7 +33,15 @@ class MainActivity : ComponentActivity() {
             ComposeProjectTheme {
                 //功能列表
                 FunctionList(viewMode.functionItemList) {
-                    WechatComposeActivity.start(this)
+                    when(it) {
+                        0 -> {
+                            WechatComposeActivity.start(this)
+                        }
+                        1 -> {
+                            ActivityHelper.startActivity(TLMainActivity::class.java, this)
+                        }
+                    }
+
                 }
             }
         }

@@ -1,4 +1,4 @@
-package app.allever.android.learning.project.compose.module.wechat.ui
+package app.allever.android.learning.project.compose.module.wechat.ui.main
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background

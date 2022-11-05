@@ -27,6 +27,10 @@ private val LightColorPalette = lightColors(
     */
 )
 
+object ComposeProjectTheme {
+
+}
+
 @Composable
 fun ComposeProjectTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

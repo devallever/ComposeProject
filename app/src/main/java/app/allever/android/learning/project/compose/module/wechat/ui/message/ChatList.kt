@@ -1,4 +1,4 @@
-package app.allever.android.learning.project.compose.module.wechat.ui
+package app.allever.android.learning.project.compose.module.wechat.ui.message
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -25,6 +25,7 @@ import app.allever.android.lib.core.ext.toast
 fun ChatList(chats: List<Chat>) {
     Column(Modifier.fillMaxSize()) {
         WeTopBar("微信")
+        //消息列表
         LazyColumn(Modifier.weight(1f)) {
             itemsIndexed(chats) { index, chat ->
                 ChatListItem(chat)

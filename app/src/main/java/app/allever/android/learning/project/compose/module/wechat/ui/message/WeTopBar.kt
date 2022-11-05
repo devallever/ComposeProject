@@ -1,4 +1,4 @@
-package app.allever.android.learning.project.compose.module.wechat.ui
+package app.allever.android.learning.project.compose.module.wechat.ui.message
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
