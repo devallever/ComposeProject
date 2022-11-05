@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import app.allever.android.learning.project.compose.module.tianliao.module.voiceroom.ui.HomeVoiceRoomPage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -29,9 +30,7 @@ fun MainViewPager(
     HorizontalPager(count = 4, modifier, pagerState) { page ->
         when (page) {
             0 -> {
-                Box(Modifier.fillMaxSize()) {
-                    Text("聊群")
-                }
+                HomeVoiceRoomPage()
             }
             1 -> {
                 Box(Modifier.fillMaxSize()) {

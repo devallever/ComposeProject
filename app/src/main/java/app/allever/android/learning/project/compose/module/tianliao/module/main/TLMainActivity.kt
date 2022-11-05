@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.allever.android.learning.project.compose.module.tianliao.module.main.ui.MainPage
-import app.allever.android.learning.project.compose.module.tianliao.module.main.viewmodel.TLMViewModel
+import app.allever.android.learning.project.compose.module.tianliao.module.main.viewmodel.TLMainViewModel
 import app.allever.android.learning.project.compose.ui.theme.ComposeProjectTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -16,8 +16,8 @@ class TLMainActivity : ComponentActivity() {
 
         setContent {
             ComposeProjectTheme {
-                val viewModel: TLMViewModel = viewModel()
-                MainPage(this, viewModel)
+                val viewModel: TLMainViewModel = viewModel()
+                MainPage(this)
             }
         }
     }
