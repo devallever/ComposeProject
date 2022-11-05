@@ -22,7 +22,6 @@ import app.allever.android.learning.project.compose.data.FunctionItem
 import app.allever.android.learning.project.compose.module.tianliao.module.main.TLMainActivity
 import app.allever.android.learning.project.compose.module.wechat.ui.WechatComposeActivity
 import app.allever.android.learning.project.compose.ui.theme.ComposeProjectTheme
-import app.allever.android.lib.core.base.AbstractActivity
 import app.allever.android.lib.core.helper.ActivityHelper
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +32,7 @@ class MainActivity : ComponentActivity() {
             ComposeProjectTheme {
                 //功能列表
                 FunctionList(viewMode.functionItemList) {
-                    when(it) {
+                    when (it) {
                         0 -> {
                             WechatComposeActivity.start(this)
                         }

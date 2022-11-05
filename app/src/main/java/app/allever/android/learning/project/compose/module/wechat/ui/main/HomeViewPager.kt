@@ -15,7 +15,12 @@ import com.google.accompanist.pager.PagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WeViewPager(list: List<Chat>, pagerState: PagerState, modifier: Modifier, onPageChanged:(Int) -> Unit): Modifier {
+fun WeViewPager(
+    list: List<Chat>,
+    pagerState: PagerState,
+    modifier: Modifier,
+    onPageChanged: (Int) -> Unit
+): Modifier {
     //页面切换监听
     LaunchedEffect(pagerState) {
         // Collect from the pager state a snapshotFlow reading the currentPage

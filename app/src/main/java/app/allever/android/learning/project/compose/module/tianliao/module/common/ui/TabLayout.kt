@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -48,7 +49,8 @@ private fun Tab(text: String, index: Int, selected: Boolean, onTabSelected: (Int
             Modifier
                 .padding(horizontal = 10.dp),
             fontSize = if (selected) 22.sp else 17.sp,
-            color = Color.Black
+            color = if (selected) Color.Black else Color.Gray,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
         )
     }
 }

@@ -42,9 +42,12 @@ fun ChatList(chats: List<Chat>) {
 fun ChatListItem(chat: Chat) {
     val friend = chat.friend
 
-    Row(Modifier.padding(4.dp).clickable {
-        toast(chat.msgList.last().text)
-    }) {
+    Row(
+        Modifier
+            .padding(4.dp)
+            .clickable {
+                toast(chat.msgList.last().text)
+            }) {
         //头像
         Image(
             painterResource(friend.avatar), friend.nickname,

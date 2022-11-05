@@ -25,7 +25,7 @@ fun MainPage(lifecycleOwner: LifecycleOwner) {
         val viewModel: TLMainViewModel = viewModel()
         //顶部ViewPager
         val pagerState = rememberPagerState(0)
-        MainViewPager(pagerState, viewModel, Modifier.weight(1f))
+        MainViewPager(lifecycleOwner, pagerState, viewModel, Modifier.weight(1f))
         //底部导航栏
         MainBottomBar(viewModel.bottomSelectedIndex) {
             toast(it.toString())
@@ -40,6 +40,7 @@ fun MainPage(lifecycleOwner: LifecycleOwner) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun MainViewPager(
+    lifecycleOwner: LifecycleOwner,
     pagerState: PagerState,
     viewModel: TLMainViewModel,
     modifier: Modifier?
@@ -49,7 +50,7 @@ private fun MainViewPager(
     }) { page ->
         when (page) {
             0 -> {
-                HomeVoiceRoomPage()
+                HomeVoiceRoomPage(lifecycleOwner)
             }
             1 -> {
                 Box(Modifier.fillMaxSize()) {
