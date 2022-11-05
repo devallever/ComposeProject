@@ -23,27 +23,14 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
+
 class WechatComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel: WeViewModel = viewModel()
             ComposeProjectTheme {
-                //纵向
-                Column {
-                    val pagerState = rememberPagerState(0)
-                    WeViewPager(viewModel.chats, pagerState = pagerState, Modifier.weight(1f)) {
-                        viewModel.selectedTab = it
-                    }
-                    //底部导航栏
-                    BottomBar(viewModel.selectedTab) {
-                        viewModel.selectedTab = it
-                        lifecycleScope.launch {
-                            pagerState.scrollToPage(it)
-                        }
-                    }
-                }
+                HomePage(this, viewModel)
             }
         }
     }
@@ -55,33 +42,3 @@ class WechatComposeActivity : ComponentActivity() {
         }
     }
 }
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun WeViewPager(list: List<Chat>, pagerState: PagerState, modifier: Modifier, onPageChanged:(Int) -> Unit): Modifier {
-    //页面切换监听
-    LaunchedEffect(pagerState) {
-        // Collect from the pager state a snapshotFlow reading the currentPage
-        snapshotFlow { pagerState.currentPage }.collect { page ->
-            onPageChanged(page)
-        }
-    }
-
-    //https://google.github.io/accompanist/pager/
-    HorizontalPager(4, state = pagerState, modifier = modifier) { page ->
-        when (page) {
-            0 -> ChatList(list)
-            1 -> {
-                Box(modifier.fillMaxSize())
-            }
-            2 -> {
-                Box(modifier.fillMaxSize())
-            }
-            3 -> {
-                Box(modifier.fillMaxSize())
-            }
-        }
-    }
-    return modifier
-}
-
