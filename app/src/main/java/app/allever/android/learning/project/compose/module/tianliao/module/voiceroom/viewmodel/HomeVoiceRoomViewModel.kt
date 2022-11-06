@@ -7,4 +7,5 @@ import androidx.lifecycle.ViewModel
 
 class HomeVoiceRoomViewModel : ViewModel() {
     var selectTab by mutableStateOf(0)
+    var bannerSelectIndex by mutableStateOf(0)
 }
