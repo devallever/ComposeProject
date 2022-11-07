@@ -7,8 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,12 +20,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.allever.android.learning.project.compose.R
 import app.allever.android.learning.project.compose.module.tianliao.module.common.ui.ViewPager
 import app.allever.android.learning.project.compose.module.tianliao.module.voiceroom.viewmodel.HomeVoiceRoomViewModel
+import app.allever.android.learning.project.compose.module.tianliao.module.voiceroom.viewmodel.VoiceRoomListViewModel
 import app.allever.android.lib.core.ext.toast
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
@@ -32,12 +37,12 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 fun VoiceRoomRecommendListPage(lifecycleOwner: LifecycleOwner) {
 
+    val viewModel: VoiceRoomListViewModel = viewModel()
     //嵌套滚动,不知在哪个版本
     //Modifier.nestedScroll(ConsumeFlingNestedScrollConnection(true, false), null)
     Column() {
         Banner(lifecycleOwner)
 
-        val list = listOf("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
         LazyVerticalGrid(
             cells = GridCells.Fixed(2),
             Modifier
@@ -47,17 +52,117 @@ fun VoiceRoomRecommendListPage(lifecycleOwner: LifecycleOwner) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            itemsIndexed(list) { index, item ->
+            itemsIndexed(viewModel.recommendList) { index, item ->
                 Box(
                     Modifier
-                        .background(color = Color.Gray, shape = RoundedCornerShape(10.dp))
-                        .height(160.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                        .height(155.dp)
                         .clickable {
                             toast(index.toString())
                         }
 
                 ) {
-                    Text(text = "hello", Modifier.fillMaxSize())
+                    //背景
+//                    Image(
+//                        painterResource(item.avatarRes),
+//                        contentDescription = "",
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .blur(1.dp, BlurredEdgeTreatment.Unbounded)
+//                            .clip(RoundedCornerShape(10.dp)), contentScale = ContentScale.Crop
+//                    )
+
+
+                    //话题
+                    Text(
+                        text = item.topic,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(10.dp)
+                            .align(Alignment.TopStart),
+                        fontSize = 17.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    //底部
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.BottomStart)
+                            .padding(10.dp)
+                    ) {
+
+
+                        //头像
+                        Image(
+                            painterResource(item.avatarRes),
+                            contentDescription = "",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(42.dp)
+                                .clip(CircleShape)
+                        )
+
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = item.nickname,
+                                fontSize = 12.sp,
+                                color = Color.Black,
+                                modifier = Modifier.padding(horizontal = 4.dp)
+                            )
+
+                            Box(modifier = Modifier.padding(4.dp)) {
+
+                                Row() {
+                                    LazyRow() {
+                                        itemsIndexed(item.memberResList) { index, resItem ->
+                                            Image(
+                                                painterResource(resItem),
+                                                contentDescription = "",
+                                                modifier = Modifier
+                                                    .size(18.dp)
+                                                    .clip(CircleShape)
+                                                    .padding(0.dp, 0.dp, 0.dp, 0.dp),
+                                                contentScale = ContentScale.Crop
+                                            )
+                                        }
+                                    }
+
+                                    Row(
+                                        modifier = Modifier
+                                            .height(15.dp)
+                                            .width(50.dp)
+                                            .background(
+                                                color = Color(0x80000000),
+                                                shape = RoundedCornerShape(45.dp)
+                                            )
+                                            .align(Alignment.CenterVertically),
+                                        horizontalArrangement = Arrangement.Center
+                                    ) {
+                                        Image(
+                                            painterResource(R.drawable.ic_fire),
+                                            contentDescription = "",
+                                            modifier = Modifier
+                                                .width(9.dp)
+                                                .height(9.dp)
+                                                .align(Alignment.CenterVertically)
+                                        )
+
+                                        Text(
+                                            item.hot,
+                                            color = Color.White,
+                                            fontSize = 9.sp,
+                                            modifier = Modifier
+                                                .align(Alignment.CenterVertically)
+                                                .padding(horizontal = 2.dp)
+                                        )
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
                 }
             }
         }
