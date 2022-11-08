@@ -66,5 +66,8 @@ dependencies {
     debugImplementation "androidx.customview:customview:1.2.0-alpha01"
     debugImplementation "androidx.customview:customview-poolingcontainer:1.0.0-alpha01"
 
+    //coil
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
     implementation project(path: ':core')
 }

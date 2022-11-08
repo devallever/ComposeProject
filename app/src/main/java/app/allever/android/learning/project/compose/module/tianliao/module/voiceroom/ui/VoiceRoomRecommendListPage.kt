@@ -6,9 +6,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,6 +31,8 @@ import app.allever.android.learning.project.compose.module.tianliao.module.commo
 import app.allever.android.learning.project.compose.module.tianliao.module.voiceroom.viewmodel.HomeVoiceRoomViewModel
 import app.allever.android.learning.project.compose.module.tianliao.module.voiceroom.viewmodel.VoiceRoomListViewModel
 import app.allever.android.lib.core.ext.toast
+import coil.compose.AsyncImage
+import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 
@@ -44,7 +47,7 @@ fun VoiceRoomRecommendListPage(lifecycleOwner: LifecycleOwner) {
         Banner(lifecycleOwner)
 
         LazyVerticalGrid(
-            cells = GridCells.Fixed(2),
+            GridCells.Fixed(2),
             Modifier
                 .weight(1f)
                 .padding(top = 10.dp),
@@ -102,6 +105,17 @@ fun VoiceRoomRecommendListPage(lifecycleOwner: LifecycleOwner) {
                                 .size(42.dp)
                                 .clip(CircleShape)
                         )
+
+                        //加载网络图片
+//                        AsyncImage(
+//                            model = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F81%2Ff8%2Fc2%2F81f8c2d8bea55c7b77ba0c4446f2e6a1.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670503104&t=7dec4bfe2fb8646de9f063bc6aa92e0d",
+//                            contentDescription = "",
+//                            contentScale = ContentScale.Crop,
+//                            modifier = Modifier
+//                                .size(42.dp)
+//                                .clip(CircleShape)
+//                        )
+
 
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
