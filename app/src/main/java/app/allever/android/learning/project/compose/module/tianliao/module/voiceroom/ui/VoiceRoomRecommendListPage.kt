@@ -97,24 +97,24 @@ fun VoiceRoomRecommendListPage(lifecycleOwner: LifecycleOwner) {
 
 
                         //头像
-                        Image(
-                            painterResource(item.avatarRes),
-                            contentDescription = "",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(42.dp)
-                                .clip(CircleShape)
-                        )
-
-                        //加载网络图片
-//                        AsyncImage(
-//                            model = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F81%2Ff8%2Fc2%2F81f8c2d8bea55c7b77ba0c4446f2e6a1.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670503104&t=7dec4bfe2fb8646de9f063bc6aa92e0d",
+//                        Image(
+//                            painterResource(item.avatarRes),
 //                            contentDescription = "",
 //                            contentScale = ContentScale.Crop,
 //                            modifier = Modifier
 //                                .size(42.dp)
 //                                .clip(CircleShape)
 //                        )
+
+                        //加载网络图片
+                        AsyncImage(
+                            model = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F81%2Ff8%2Fc2%2F81f8c2d8bea55c7b77ba0c4446f2e6a1.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670503104&t=7dec4bfe2fb8646de9f063bc6aa92e0d",
+                            contentDescription = "",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(42.dp)
+                                .clip(CircleShape)
+                        )
 
 
                         Column(modifier = Modifier.weight(1f)) {
